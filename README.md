@@ -28,9 +28,30 @@ For a detailed explanation on how things work, check out the [guide](http://vuej
 
 
 ## Deployment
+
+### Continuous Integration
+
 This repository is configured for deployment to rowrow.io.
 
 Deplyoment is configured to [automatically build on Zeit Now](https://zeit.co/docs/integrations/now-for-github) and alias to https://roworow.to after every push to _master_ branch.
 Auto-aliasing to a second domain like https://www.rowrow.io doesn't seem to be working from ```now.json``` configuration file.
 
 Doing manual alias afterwards with ```now alias projethashedname.now.sh www.rowrow.io``` has positive side effect that this container then runs in developer's own time zone (in my case Europe), while the auto-build apparently runs in Github's time zone (US East). :) 
+
+### Manual deployment
+
+Manual Zeit deployment is auto-aliased to domain ```www.rowrow.io``` *and* ```www.rowrow.io``` through _now.json_ entry:
+
+```
+{
+    "alias": ["rowrow.io", "www.rowrow.io"],
+    "name": "rowrow"
+}
+```
+
+Simply run ```now && now alias``` to deploy and alias in one step.
+
+
+### Hickups
+
+The free Zeit Now account has a limited number of deployments. You may need to destroy older deployments like this ```now rm nameofproject.now.sh``` before being able to create new deployments through CLI or pushing to Git.
