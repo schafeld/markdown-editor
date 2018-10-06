@@ -40,7 +40,10 @@ module.exports = {
     // https://vue-loader.vuejs.org/en/options.html#cachebusting
     cacheBusting: true,
 
-    cssSourceMap: true
+    cssSourceMap: true,
+
+    // potential security risk:  https://medium.com/webpack/webpack-dev-server-middleware-security-issues-1489d950874a
+    disableHostCheck: true // TODO
   },
 
   build: {

@@ -2,7 +2,7 @@
   <div id="app">
     <img src="./assets/logo.png">
     <router-view/>
-    <p>Hello from Lisbon!</p>
+    <p>Hello from Outsite Lisbon!</p>
   </div>
 </template>
 
