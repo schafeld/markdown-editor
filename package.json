@@ -2,7 +2,7 @@
   "name": "markdown-editor",
   "version": "1.0.0",
   "description": "Simple markdown editor created witch Vue.js using TDD",
-  "author": "Oliver Schafeld <oliver@schafeld.com>",
+  "author": "Oliver Schafeld <info@schafeld.com>",
   "private": true,
   "scripts": {
     "dev": "webpack-dev-server --inline --progress --config build/webpack.dev.conf.js",
