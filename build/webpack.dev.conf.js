@@ -31,6 +31,8 @@ const devWebpackConfig = merge(baseWebpackConfig, {
     hot: true,
     contentBase: false, // since we use CopyWebpackPlugin.
     compress: true,
+    // potential security risk: https://medium.com/webpack/webpack-dev-server-middleware-security-issues-1489d950874a
+    disableHostCheck: true, // TODO
     host: HOST || config.dev.host,
     port: PORT || config.dev.port,
     open: config.dev.autoOpenBrowser,
