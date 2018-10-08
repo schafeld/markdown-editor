@@ -3,14 +3,20 @@
     <p>Work in progress...</p>
       <div class="sidebar">(Sidebar)</div>
       <div class="content">
-        <div class="editor">(Editor)</div>
+        <Editor />
         <div class="renderer">(Renderer)</div>
       </div>
   </div>
 </template>
 
 <script>
-export default {}
+import Editor from './Editor'
+
+export default {
+  components: {
+    Editor
+  }
+}
 </script>
 
 <style scoped>
