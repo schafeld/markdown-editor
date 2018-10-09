@@ -1,11 +1,16 @@
 <template>
   <div class="editor">
-    <textarea placeholder="Your markdown here..."></textarea>
+    <textarea :value="value"
+        @input="$emit('input', $event.target.value)"
+        placeholder="Your markdown here...">
+    </textarea>
   </div>
 </template>
 
 <script>
-export default {}
+export default {
+  props: ['value']
+}
 </script>
 
 <style scoped>

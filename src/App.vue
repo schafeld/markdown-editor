@@ -3,7 +3,7 @@
     <p>Work in progress...</p>
       <div class="sidebar">(Sidebar)</div>
       <div class="content">
-        <Editor />
+        <Editor v-model="content"></Editor>
         <div class="renderer">(Renderer)</div>
       </div>
   </div>
@@ -13,6 +13,11 @@
 import Editor from './Editor'
 
 export default {
+  data () {
+    return {
+      content: ''
+    }
+  },
   components: {
     Editor
   }
