@@ -4,13 +4,14 @@
       <div class="sidebar">(Sidebar)</div>
       <div class="content">
         <Editor v-model="content"></Editor>
-        <div class="renderer">(Renderer)</div>
+        <renderer :markdown="content"></renderer>
       </div>
   </div>
 </template>
 
 <script>
 import Editor from './Editor'
+import Renderer from './Renderer'
 
 export default {
   data () {
@@ -19,7 +20,8 @@ export default {
     }
   },
   components: {
-    Editor
+    Editor,
+    Renderer
   }
 }
 </script>
