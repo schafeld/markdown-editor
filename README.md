@@ -31,12 +31,13 @@ For a detailed explanation on how things work, check out the [guide](http://vuej
 
 ### Continuous Integration
 
-This repository is configured for deployment to rowrow.io.
+This repository is configured for deployment to https://rowrow.io and https://www.rowrow.io.
 
-Deplyoment is configured to [automatically build on Zeit Now](https://zeit.co/docs/integrations/now-for-github) and alias to https://roworow.to after every push to _master_ branch.
-Auto-aliasing to a second domain like https://www.rowrow.io doesn't seem to be working from ```now.json``` configuration file.
+Deplyoment is configured to [automatically build on Zeit Now](https://zeit.co/docs/integrations/now-for-github) and alias to _both_ domains after every push to _master_ branch.
 
-Doing manual alias afterwards with ```now alias projethashedname.now.sh www.rowrow.io``` has positive side effect that this container then runs in developer's own time zone (in my case Europe), while the auto-build apparently runs in Github's time zone (US East). :) 
+_Trick:_: You can auto-deploy and -alias to just one domain, that container will be located in the US (close to Github). If you are in another timezone you can the still _manually_ alias the same deployment, which will give you a container 'closer to home'.
+
+I.e.: Doing manual alias afterwards with ```now alias projethashedname.now.sh www.rowrow.io``` has positive side effect that this container then runs in developer's own time zone (in my case Europe), while the auto-build apparently runs in Github's time zone (US East). :) 
 
 ### Manual deployment
 
@@ -55,3 +56,7 @@ Simply run ```now && now alias``` to deploy and alias in one step.
 ### Hickups
 
 The free Zeit Now account has a limited number of deployments. You may need to destroy older deployments like this ```now rm nameofproject.now.sh``` before being able to create new deployments through CLI or pushing to Git.
+
+### Acknowledgment
+
+So far this is mostly based on a tutorial by [Ankur Singhal](https://medium.com/@ankurr.singhal)
