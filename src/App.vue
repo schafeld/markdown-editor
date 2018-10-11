@@ -30,7 +30,7 @@ export default {
 }
 </script>
 
-<style scoped>
+<style>
   .main {
     height: 100vh;
     display: flex;
@@ -39,6 +39,7 @@ export default {
   .sidebar {
     flex-basis: 20%;
     background-color: #eee;
+    padding: 1em;
   }
   .content {
     flex-basis: 80%;
