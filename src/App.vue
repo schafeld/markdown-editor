@@ -12,9 +12,9 @@
 </template>
 
 <script>
-import Editor from './Editor'
-import Renderer from './Renderer'
-import FileForm from './FileForm'
+import Editor from './components/Editor'
+import Renderer from './components/Renderer'
+import FileForm from './components/FileForm'
 
 export default {
   data () {

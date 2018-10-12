@@ -1,5 +1,5 @@
 import { mount } from '@vue/test-utils'
-import FileForm from '@/FileForm'
+import FileForm from '@/components/FileForm'
 
 describe('FileForm.vue', () => {
   let wrapper

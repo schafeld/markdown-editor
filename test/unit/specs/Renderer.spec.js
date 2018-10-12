@@ -1,5 +1,5 @@
 import Vue from 'vue'
-import Renderer from '@/Renderer'
+import Renderer from '@/components/Renderer'
 
 describe('Renderer.vue', () => {
   let vm

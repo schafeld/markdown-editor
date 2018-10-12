@@ -1,5 +1,5 @@
 import Vue from 'vue'
-import Editor from '@/Editor'
+import Editor from '@/components/Editor'
 
 describe('App.vue', () => {
   let vm
