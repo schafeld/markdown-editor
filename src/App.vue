@@ -3,6 +3,9 @@
       <div class="sidebar">
         <p>Work in progress...</p>
         <file-form></file-form>
+
+        <file-view />
+
       </div>
       <div class="content">
         <editor v-model="content"></editor>
@@ -15,6 +18,7 @@
 import Editor from './components/Editor'
 import Renderer from './components/Renderer'
 import FileForm from './components/FileForm'
+import FileView from './components/FileView'
 
 export default {
   data () {
@@ -25,7 +29,8 @@ export default {
   components: {
     Editor,
     Renderer,
-    FileForm
+    FileForm,
+    FileView
   }
 }
 </script>
