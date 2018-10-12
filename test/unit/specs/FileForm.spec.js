@@ -42,4 +42,11 @@ describe('FileForm.vue', () => {
     // so is this even useful?
     expect(wrapper.contains('.file-form')).toBe(true)
   })
+
+  test('it should clear the input field on form submission', () => {
+    wrapper.setData({ name: 'New File' })
+    wrapper.find('form').trigger('submit')
+    let input = wrapper.find('input[type="text"]')
+    expect(input.element.value).toBe('')
+  })
 })

@@ -1,7 +1,7 @@
 <template>
     <div class="file-form">
-        <form @submit="submit()">
-            <input type="text" placeholder="File Name" />
+        <form @submit.prevent="submit">
+            <input v-model="name" type="text" placeholder="File Name" />
             <button type="submit">
                 <i class="fas fa-plus"></i>
             </button>
@@ -22,6 +22,7 @@ export default {
         return
       }
       this.$emit('submit', this.name)
+      this.name = ''
     }
   }
 }
