@@ -1,17 +1,23 @@
 <template>
   <div class="main">
-      <div class="sidebar">
-        <p>Work in progress...</p>
-        <file-form @submit="createFile"></file-form>
-        <div class="files-list">
-          <file-view v-for="(file, index) in files" :name="file.name" :key="index"></file-view>
-        </div>
+    <div class="sidebar">
+      <p>Work in progress...</p>
+      <file-form @submit="createFile"></file-form>
+      <div class="files-list">
+        <file-view v-for="(file, index) in files" :name="file.name" :key="index"></file-view>
+      </div>
+    </div>
 
+    <div class="content">
+      <template v-if="selectedFile">
+        <editor v-model="selectedFile.content"></editor>
+        <renderer :markdown="selectedFile.content"></renderer>
+      </template>
+      <div v-else class="no-file-selected">
+        Please select a file.
       </div>
-      <div class="content">
-        <editor v-model="content"></editor>
-        <renderer :markdown="content"></renderer>
-      </div>
+    </div>
+
   </div>
 </template>
 
@@ -24,7 +30,8 @@ import FileView from './components/FileView'
 export default {
   data () {
     return {
-      content: '',
+      // content: '',
+      selectedFile: null,
       files: []
     }
   },
@@ -65,5 +72,19 @@ export default {
   }
   .editor{
     border-right: 2px solid #ddd;
+  }
+  .files-list {
+    margin-top: 1.5em;
+  }
+  .no-file-selected {
+    flex-basis: 100%;
+    background-color: #f9fafa;
+    color: #ddd;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .no-file-selected h1 {
+    font-size: 50px;
   }
 </style>
