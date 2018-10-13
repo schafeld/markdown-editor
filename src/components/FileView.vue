@@ -1,9 +1,10 @@
 <template>
-  <div class="file-view">
-  <div class="file-name">
-    <input @keyup.enter="rename" v-if="editing" type="text" v-model="fileName" />
-    <span v-else>{{ name }}</span>
-  </div>
+  <div class="file-view" @click="$emit('fileClick', file)"
+      :class="{'selected': file.selected, 'favorite': file.favorite}">
+    <div class="file-name">
+      <input @keyup.enter="$emit('rename', $event.target.value)" v-if="editing" type="text" v-model="fileName" />
+      <span v-else>{{ file.name }}</span>
+    </div>
     <div class="actions-group">
       <span @click="editing = !editing" class="file-edit">
           <i class="fas fa-pencil-alt"></i>
@@ -20,10 +21,10 @@
 
 <script>
 export default {
-  props: ['name'],
+  props: ['file'],
   data () {
     return {
-      fileName: this.name,
+      fileName: this.file.name,
       editing: false
     }
   },
@@ -79,5 +80,11 @@ export default {
   background-color: transparent;
   border-bottom: 1px solid #ddd;
   width: 100%;
+}
+.file-view.selected {
+  background-color: #f9fafa;
+}
+.file-view.favorite .file-fav{
+  color: red;
 }
 </style>
