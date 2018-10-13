@@ -4,7 +4,7 @@
       <p>Work in progress...</p>
       <file-form @submit="createFile"></file-form>
       <div class="files-list">
-        <file-view v-for="(file, index) in files" :name="file.name" :key="index"></file-view>
+        <file-view v-for="(file, index) in files" @fileClick="selectFile" :file="file" :key="index"></file-view>
       </div>
     </div>
 
@@ -44,8 +44,18 @@ export default {
   methods: {
     createFile (name) {
       this.files.push({
-        name
+        name,
+        selected: false,
+        favorite: false,
+        content: ''
       })
+    },
+    selectFile (file) {
+      if (this.selectedFile) {
+        this.selectedFile.selected = false
+      }
+      file.selected = true
+      this.selectedFile = file
     }
   }
 }

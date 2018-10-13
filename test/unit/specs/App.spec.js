@@ -28,20 +28,6 @@ describe('App.vue', () => {
       .toBeNull()
   })
 
-  /*
-  // These are useless now that we start with a 'no-file-selected' instead of editor or renderer
-  test('it\'s content panel should have an editor', () => {
-    expect(vm.$el.querySelector('.content .editor'))
-      .not
-      .toBeNull()
-  })
-  test('it\'s content panel should have an renderer', () => {
-    expect(vm.$el.querySelector('.content .renderer'))
-      .not
-      .toBeNull()
-  })
-  */
-
   // Tutorial mixes up vm and wrapper. :( TODO: Pick one / DRY
   test('it\'s sidebar should have a file-list', () => {
     expect(wrapper.contains('.sidebar .files-list')).toBe(true)
@@ -68,5 +54,43 @@ describe('App.vue', () => {
     expect(wrapper.contains('.editor')).toBe(true)
     expect(wrapper.contains('.renderer')).toBe(true)
     expect(wrapper.contains('.no-file-selected')).toBe(false)
+  })
+
+  test('it should push a valid file object in files data property when createFile is called', () => {
+    let expectedFile = {
+      name: 'New File',
+      selected: false,
+      favorite: false,
+      content: ''
+    }
+    wrapper.vm.createFile('New File')
+    expect(wrapper.vm.files).toEqual([expectedFile])
+  })
+
+  test('it should set the selectedFile to the file object referenced by .file-view when clicked on it and also flip the selected value to true', () => {
+    let expectedFile = {
+      name: 'New File',
+      selected: true,
+      favorite: false,
+      content: ''
+    }
+    wrapper.vm.createFile(expectedFile.name)
+    // [vue-test-utils]: update has been removed from vue-test-utils. All updates are now synchronous by default
+    // wrapper.update()
+    let onlyFileView = wrapper.find('.file-view')
+    onlyFileView.trigger('click')
+    expect(wrapper.vm.selectedFile).toEqual(expectedFile)
+  })
+
+  test('it should have only one .file-view which has .selected class on it', () => {
+    wrapper.vm.createFile('New File')
+    wrapper.vm.createFile('New File 2')
+    // [vue-test-utils]: update has been removed from vue-test-utils. All updates are now synchronous by default
+    // wrapper.update()
+    let fileViews = wrapper.findAll('.file-view')
+    fileViews.wrappers[0].trigger('click')
+    fileViews.wrappers[1].trigger('click')
+    let selectedFileViews = wrapper.findAll('.file-view.selected')
+    expect(selectedFileViews.length).toBe(1)
   })
 })
