@@ -59,7 +59,7 @@ The free Zeit Now account has a limited number of deployments. You may need to d
 
 ### Acknowledgment
 
-So far this is mostly based on a tutorial by [Ankur Singhal](https://medium.com/@ankurr.singhal)
+So far this is mostly based on [tutorial code](https://github.com/ankurrsinghal/markdown-editor) by [Ankur Singhal](https://medium.com/@ankurr.singhal)
 
 ### Development
 
