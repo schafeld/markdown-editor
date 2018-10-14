@@ -3,6 +3,7 @@
 import Vue from 'vue'
 import App from '@/App'
 import { mount } from '@vue/test-utils'
+import FileView from '@/components/FileView'
 
 describe('App.vue', () => {
   // this is used in Medium tutorial
@@ -92,5 +93,72 @@ describe('App.vue', () => {
     fileViews.wrappers[1].trigger('click')
     let selectedFileViews = wrapper.findAll('.file-view.selected')
     expect(selectedFileViews.length).toBe(1)
+  })
+
+  test('it should have a removeFile method', () => {
+    expect(typeof wrapper.vm.removeFile).toBe('function')
+  })
+
+  test('it should call removeFile method when bin icon is clicked', () => {
+    wrapper.vm.createFile('New File')
+    wrapper.setMethods({
+      removeFile: jest.fn()
+    })
+    // wrapper.update()
+    let binButton = wrapper.find('.file-view .file-remove')
+    binButton.trigger('click')
+    expect(wrapper.vm.removeFile).toHaveBeenCalled()
+  })
+
+  test('it should remove the file object from files data property when bin icon is clicked', () => {
+    wrapper.vm.createFile('New File')
+    // wrapper.update()
+    let binButton = wrapper.find('.file-view .file-remove')
+    binButton.trigger('click')
+    expect(wrapper.vm.files.length).toBe(0)
+  })
+
+  describe('Renaming', () => {
+    let file
+    beforeEach(() => {
+      file = {
+        name: 'New File',
+        selected: false,
+        favorite: false,
+        content: ''
+      }
+    })
+
+    test('it should have a renameFile method', () => {
+      expect(typeof wrapper.vm.renameFile).toBe('function')
+    })
+
+    test('it should call renameFile method when rename of FileView is called', () => {
+      wrapper.vm.createFile(file.name)
+      wrapper.setMethods({
+        renameFile: jest.fn()
+      })
+      let fileView = wrapper.find(FileView)
+      fileView.vm.rename(file, 'New File 2')
+      expect(wrapper.vm.renameFile).toHaveBeenCalled()
+    })
+
+    test('it should rename the file object when rename of FileView is called', () => {
+      wrapper.vm.createFile('New File')
+      // wrapper.update()
+      wrapper.vm.renameFile(wrapper.vm.files[0], 'New Name')
+      expect(wrapper.vm.files[0].name).toBe('New Name')
+    })
+
+    test('it does not select the file which we edit when clicking the input field', () => {
+      wrapper.vm.createFile('New File')
+      // wrapper.update()
+      let fileView = wrapper.find(FileView)
+      fileView.setData({
+        editing: true
+      })
+      fileView.find('input[type="text"]').trigger('click')
+      expect(wrapper.vm.selectedFile).toBeNull()
+    })
   })
 })

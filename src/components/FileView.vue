@@ -2,17 +2,17 @@
   <div class="file-view" @click="$emit('fileClick', file)"
       :class="{'selected': file.selected, 'favorite': file.favorite}">
     <div class="file-name">
-      <input @keyup.enter="$emit('rename', $event.target.value)" v-if="editing" type="text" v-model="fileName" />
+      <input @click.stop="''" @keyup.enter="$emit('rename', $event.target.value)" v-if="editing" type="text" v-model="fileName" />
       <span v-else>{{ file.name }}</span>
     </div>
     <div class="actions-group">
-      <span @click="editing = !editing" class="file-edit">
+      <span @click.stop="editing = !editing" class="file-edit">
           <i class="fas fa-pencil-alt"></i>
       </span>
-      <span @click="$emit('delete')" class="file-remove">
+      <span @click.stop="$emit('delete')" class="file-remove">
         <i class="fas fa-times-circle"></i>
       </span>
-      <span @click="$emit('favorite')" class="file-fav">
+      <span @click.stop="$emit('favorite')" class="file-fav">
         <i class="fas fa-heart"></i>
       </span>
     </div>
